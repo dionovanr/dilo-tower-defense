@@ -41,7 +41,11 @@ public class LevelManager : MonoBehaviour
     private int _enemyCounter;
     private float _runningSpawnDelay;
 
-    public bool IsOver { get; private set; }
+    public bool IsOver 
+    { 
+        get; private set; 
+
+    }
 
     private void Start()
     {
@@ -161,9 +165,7 @@ public class LevelManager : MonoBehaviour
 
     public Bullet GetBulletFromPool(Bullet prefab)
     {
-        GameObject newBulletObj = _spawnedBullets.Find(
-            b => !b.gameObject.activeSelf && b.name.Contains(prefab.name)
-        )?.gameObject;
+        GameObject newBulletObj = _spawnedBullets.Find(b => !b.gameObject.activeSelf && b.name.Contains(prefab.name))?.gameObject;
 
         if (newBulletObj == null)
         {
@@ -171,6 +173,7 @@ public class LevelManager : MonoBehaviour
         }
 
         Bullet newBullet = newBulletObj.GetComponent<Bullet>();
+
         if (!_spawnedBullets.Contains(newBullet))
         {
             _spawnedBullets.Add(newBullet);
